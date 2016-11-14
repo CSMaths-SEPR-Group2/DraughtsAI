@@ -82,7 +82,7 @@ class Move:
         return self.steps[-1]
 
     def __str__(self):
-        return " -> ".join([str(sq) for sq in [self.origin] + self.steps])
+        return " -> ".join([str(sq) for sq in [self.origin.current_square] + self.steps])
 
 
 class Board(DefaultRepr):
