@@ -156,6 +156,8 @@ class Board(DefaultRepr):
         move.origin.current_square = move.dest
         move.dest.piece = move.origin
 
+        #TODO: promote to kings
+
     def get_moves_by_colour(self, piece_type: PieceType):
         moves_by_colour = []
 
