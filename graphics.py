@@ -1,7 +1,7 @@
 from tkinter import *
 from typing import List
 
-from game_engine import Board, Piece, Move, PieceType
+from game_parts import Board, Piece, Move, PieceType
 from helper_funcs import get_checker_pattern
 
 class DraughtsUI:

@@ -1,4 +1,4 @@
-from game_engine import Board
+from game_parts import Board
 
 borat = Board()
 
