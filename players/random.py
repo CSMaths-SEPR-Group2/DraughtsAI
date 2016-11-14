@@ -8,6 +8,11 @@ class RandomPlayer(Player):
         self._color = color
 
     def make_move(self):
-        allmoves = self._board.get_moves_by_colour(self._color)
-        return random.choice(allmoves)
+        all_moves = self._board.get_moves_by_colour(self._color)
+
+        if not all_moves:
+            print(self._board.get_str_form())
+            raise Exception("No possible moves to make!")
+
+        return random.choice(all_moves)
 
