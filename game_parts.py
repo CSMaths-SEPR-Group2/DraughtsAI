@@ -105,6 +105,9 @@ class Board(DefaultRepr):
     def all_pieces(self):
         return self.piece_by_type[PieceType.Black] + self.piece_by_type[PieceType.White]
 
+    def has_player_lost(self, piece_type: PieceType):
+        return self.piece_by_type[piece_type] == []
+
     def add_piece(self, square, type, is_king=False):
         piece = Piece(square, type, is_king)
 
@@ -157,7 +160,7 @@ class Board(DefaultRepr):
         moves_by_colour = []
 
         for piece in self.piece_by_type[piece_type]:
-            moves_by_colour.append(self.get_piece_moves(piece))
+            moves_by_colour.extend(self.get_piece_moves(piece))
 
         return moves_by_colour
 
@@ -177,7 +180,6 @@ class Board(DefaultRepr):
             over_square = self.get_square_by_coords(current_x + 2 * direction_x, current_y + 2 * direction_y)
             op_square = self.get_square_by_coords(current_x + direction_x, current_y + direction_y)
 
-            print(over_square, op_square, repr(op_square.piece))
             while over_square is not None \
                     and op_square is not None \
                     and over_square.piece is None \
