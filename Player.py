@@ -8,3 +8,8 @@ class Player:
     def make_move(self):
         pass
 
+    def set_player_won(self):
+        pass
+
+    def set_player_lost(self):
+        pass
