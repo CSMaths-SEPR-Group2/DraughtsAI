@@ -179,25 +179,27 @@ class Board(DefaultRepr):
 
             (current_x, current_y) = (piece.x, piece.y)
 
-            over_square = self.get_square_by_coords(current_x + 2 * direction_x, current_y + 2 * direction_y)
-            op_square = self.get_square_by_coords(current_x + direction_x, current_y + direction_y)
+            dest_square = self.get_square_by_coords(current_x + 2 * direction_x, current_y + 2 * direction_y)
+            over_square = self.get_square_by_coords(current_x + direction_x, current_y + direction_y)
 
             while over_square is not None \
-                    and op_square is not None \
-                    and over_square.piece is None \
-                    and op_square.piece is not None \
-                    and op_square.piece.type != piece.type:
+                    and dest_square is not None \
+                    and over_square.piece is not None \
+                    and dest_square.piece is None \
+                    and over_square.piece.type != piece.type:
                 if len(jump_moves) == 0:
-                    jump_moves.append(Move(piece, over_square, op_square.piece))
+                    jump_moves.append(Move(piece, dest_square, over_square.piece))
                 else:
                     move = jump_moves[-1].clone()
-                    move.add_step(over_square, op_square.piece)
+                    move.add_step(dest_square, over_square.piece)
                     jump_moves.append(move)
 
                 (current_x, current_y) = (over_square.x, over_square.y)
 
-                over_square = self.get_square_by_coords(current_x + 2 * direction_x, current_y + 2 * direction_y)
-                op_square = self.get_square_by_coords(current_x + direction_x, current_y + direction_y)
+                dest_square = self.get_square_by_coords(current_x + 2 * direction_x, current_y + 2 * direction_y)
+                over_square = self.get_square_by_coords(current_x + direction_x, current_y + direction_y)
+
+            moves.extend(jump_moves)
 
         if piece.is_king or piece.type == PieceType.White:
             add_close_moves(piece.x + 1, piece.y + 1)
