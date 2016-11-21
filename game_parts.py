@@ -117,13 +117,11 @@ class Board(DefaultRepr):
 
         return piece
 
-    def remove_piece(self, x, y):
-        piece = self.squares[y][x]
-        self.squares[y][x].set_piece(None)
+    def remove_piece(self, square: Square):
+        peice = square.piece
+        square.set_piece(None)
 
-        self.piece_by_type[piece.type].remove(piece)
-
-        return piece
+        self.piece_by_type[peice.type].remove(peice)
 
     def init_default_state(self):
         def fill_squares(init_offset, init_row, piece_type):
@@ -156,7 +154,16 @@ class Board(DefaultRepr):
         move.origin.current_square = move.dest
         move.dest.piece = move.origin
 
-        #TODO: promote to kings
+        # promote to kings
+        if move.dest.piece.type == PieceType.White and move.dest.piece.y == 9:
+            move.dest.piece.is_king = True
+        elif move.dest.piece.type == PieceType.Black and move.dest.piece.y == 0:
+            move.dest.piece.is_king = True
+
+        #remove captured pieces
+        for capture in move.captures:
+            self.remove_piece(capture.current_square)
+
 
     def get_moves_by_colour(self, piece_type: PieceType):
         moves_by_colour = []

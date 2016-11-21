@@ -2,9 +2,9 @@ from Player import Player
 from game_parts import *
 from players.random import RandomPlayer
 
-Type = ""
 
-def start_game(Player1Type: Type[Player], Player2Type: Type[Player]):
+
+def start_game(Player1Type, Player2Type):
     board = Board()
     board.init_default_state()
 
