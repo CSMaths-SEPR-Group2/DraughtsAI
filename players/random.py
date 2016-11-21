@@ -16,3 +16,5 @@ class RandomPlayer(Player):
 
         return random.choice(all_moves)
 
+    def set_player_won(self):
+        print(self._color.__repr__() + "wins!")
