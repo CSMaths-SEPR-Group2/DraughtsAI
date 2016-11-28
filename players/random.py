@@ -1,6 +1,6 @@
 from Player import Player
 import random
-from game_parts import Board, Piece, Square, PieceType
+from game_parts import Board, PieceType
 
 class RandomPlayer(Player):
     def __init__(self, board: Board, color: PieceType):
