@@ -8,7 +8,6 @@ class PieceType(Enum):
     Black = 0
     White = 1
 
-
 class DefaultRepr:
     def __repr__(self):
         return "{}({})".format(self.__class__, self.__dict__)
@@ -118,18 +117,18 @@ class Board(DefaultRepr):
         return piece
 
     def remove_piece(self, square: Square):
-        peice = square.piece
+        piece = square.piece
         square.set_piece(None)
 
-        self.piece_by_type[peice.type].remove(peice)
+        self.piece_by_type[piece.type].remove(piece)
 
     def init_default_state(self):
         def fill_squares(init_offset, init_row, piece_type):
             for (col, row) in get_checker_pattern(init_offset, init_row, 4, 10):
                 self.add_piece(self.squares[col][row], piece_type)
 
-        fill_squares(0, 0, PieceType.White)
-        fill_squares(0, 6, PieceType.Black)
+        fill_squares(1, 0, PieceType.White)
+        fill_squares(1, 6, PieceType.Black)
 
     def get_str_form(self):
         lines = []

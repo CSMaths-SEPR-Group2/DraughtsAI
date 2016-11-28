@@ -10,16 +10,16 @@ class TestBoard(TestCase):
 
     def test_setup_initial_state(self):
         self.board.init_default_state()
-        correct_output = "O.O.O.O.O.\n"\
-                         ".O.O.O.O.O\n"\
+        correct_output = ".O.O.O.O.O\n"\
+                         "O.O.O.O.O.\n" \
+                         ".O.O.O.O.O\n" \
                          "O.O.O.O.O.\n"\
-                         ".O.O.O.O.O\n"\
                          "..........\n"\
-                         "..........\n"\
+                         "..........\n" \
+                         ".X.X.X.X.X\n" \
                          "X.X.X.X.X.\n"\
                          ".X.X.X.X.X\n"\
-                         "X.X.X.X.X.\n"\
-                         ".X.X.X.X.X"
+                         "X.X.X.X.X."
 
         self.assertEqual(self.board.get_str_form(), correct_output)
 
